@@ -41,5 +41,3 @@ RUN bundle install --deployment --without test development \
 COPY . /mastodon
 
 VOLUME /mastodon/public/system /mastodon/public/assets /mastodon/public/packs
-
-RUN bundle exec rails assets:precompile
