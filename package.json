@@ -95,6 +95,7 @@
     "reselect": "^2.5.4",
     "sass-loader": "^6.0.3",
     "sinon": "^1.17.6",
+    "socket.io-client": "^2.0.1",
     "stringz": "^0.1.2",
     "style-loader": "^0.16.1",
     "utf-8-validate": "^3.0.1",
