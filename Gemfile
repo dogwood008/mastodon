@@ -91,6 +91,8 @@ group :development do
   gem 'capistrano-rails'
   gem 'capistrano-rbenv'
   gem 'capistrano-yarn'
+
+  gem 'foreman'
 end
 
 group :production do
