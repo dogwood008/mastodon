@@ -45,7 +45,7 @@ module.exports = {
     }),
     new webpack.DefinePlugin({
       'process.env': {
-        'LOCAL_DOMAIN': JSON.stringify(process.env.LOCAL_DOMAIN),
+        'LOCAL_HTTPS': JSON.stringify(process.env.LOCAL_HTTPS),
         'OANDA_STREAMING_PORT': JSON.stringify(process.env.OANDA_STREAMING_PORT),
         'NODE_ENV': JSON.stringify(process.env.NODE_ENV)
       }
