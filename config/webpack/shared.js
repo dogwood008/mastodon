@@ -49,6 +49,7 @@ module.exports = {
         'OANDA_STREAMING_PORT': JSON.stringify(process.env.OANDA_STREAMING_PORT),
         'NODE_ENV': JSON.stringify(process.env.NODE_ENV)
       }
+    })
   ],
 
   resolve: {
