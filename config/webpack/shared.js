@@ -40,8 +40,15 @@ module.exports = {
     new ExtractTextPlugin(env.NODE_ENV === 'production' ? '[name]-[hash].css' : '[name].css'),
     new ManifestPlugin({ fileName: paths.manifest, publicPath, writeToFileEmit: true }),
     new webpack.optimize.CommonsChunkPlugin({
-      name: 'vendor',
-      minChunks: ({ resource }) => /node_modules/.test(resource)
+      name: 'common',
+      minChunks: 2
+    }),
+    new webpack.DefinePlugin({
+      'process.env': {
+        'LOCAL_DOMAIN': JSON.stringify(process.env.LOCAL_DOMAIN),
+        'OANDA_STREAMING_PORT': JSON.stringify(process.env.OANDA_STREAMING_PORT),
+        'NODE_ENV': JSON.stringify(process.env.NODE_ENV)
+      }
     })
   ],
 
@@ -60,6 +67,7 @@ module.exports = {
   node: {
     // Called by http-link-header in an API we never use, increases
     // bundle size unnecessarily
-    Buffer: false
+    Buffer: false,
+    fs: 'empty'
   }
 }

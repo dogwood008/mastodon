@@ -2,6 +2,7 @@ import React from 'react';
 import ComposeFormContainer from './containers/compose_form_container';
 import UploadFormContainer from './containers/upload_form_container';
 import NavigationContainer from './containers/navigation_container';
+import PricepanelContainer from './containers/pricepanel_container';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { mountCompose, unmountCompose } from '../../actions/compose';
@@ -24,6 +25,13 @@ const mapStateToProps = state => ({
 });
 
 class Compose extends React.PureComponent {
+
+  static propTypes = {
+    dispatch: PropTypes.func.isRequired,
+    withHeader: PropTypes.bool,
+    showSearch: PropTypes.bool,
+    intl: PropTypes.object.isRequired
+  };
 
   componentDidMount () {
     this.props.dispatch(mountCompose());
@@ -60,6 +68,7 @@ class Compose extends React.PureComponent {
           <div className='drawer__inner'>
             <NavigationContainer />
             <ComposeFormContainer />
+            <PricepanelContainer />
           </div>
 
           <Motion defaultStyle={{ x: -100 }} style={{ x: spring(showSearch ? 0 : -100, { stiffness: 210, damping: 20 }) }}>
@@ -75,12 +84,5 @@ class Compose extends React.PureComponent {
   }
 
 }
-
-Compose.propTypes = {
-  dispatch: PropTypes.func.isRequired,
-  withHeader: PropTypes.bool,
-  showSearch: PropTypes.bool,
-  intl: PropTypes.object.isRequired
-};
 
 export default connect(mapStateToProps)(injectIntl(Compose));

@@ -48,9 +48,11 @@ class User < ApplicationRecord
   validates :locale, inclusion: I18n.available_locales.map(&:to_s), unless: 'locale.nil?'
   validates :email, email: true
 
-  scope :recent,    -> { order('id desc') }
+  scope :recent,    -> { order(id: :desc) }
   scope :admins,    -> { where(admin: true) }
   scope :confirmed, -> { where.not(confirmed_at: nil) }
+
+  before_validation :sanitize_languages
 
   def confirmed?
     confirmed_at.present?
@@ -76,5 +78,11 @@ class User < ApplicationRecord
 
   def setting_auto_play_gif
     settings.auto_play_gif
+  end
+
+  private
+
+  def sanitize_languages
+    allowed_languages.reject!(&:blank?)
   end
 end
